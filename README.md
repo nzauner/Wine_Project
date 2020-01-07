@@ -5,7 +5,7 @@ By Stuart Murphy and Nick Zauner
 
 ![Drink_Bubbly](https://bestanimations.com/Food/Beverages/Alcohol/drink-champagne-animated-gif.gif)
 
-- API's collected from:
+- Data collected from:
     - [Snooth](http://www.snooth.com/)
     - [Wine-reviews](https://www.kaggle.com/zynicide/wine-reviews)
 
