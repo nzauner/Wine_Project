@@ -22,4 +22,4 @@ By Stuart Murphy and Nick Zauner
 
 * Presentation:
     
-    * [Wine Analysis](https://prezi.com/view/nsEG3LrOrJJHHD87K61Q/)
+    * [Wine Analysis](https://docs.google.com/presentation/d/1JfScTQln_WzPZrWv1vkQnTt3Qes3Gl9l5FaD9NPk_KE/edit?usp=sharing)
