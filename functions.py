@@ -1,11 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Tue Jan  7 20:13:52 2020
-
-@author: z
-"""
-
 #  Import statements
 import pandas as pd
 import numpy as np
@@ -35,18 +27,28 @@ def welch_ttest(x, y):
     print("\n",
           f"Welch's t-test= {t:.4f}", "\n",
           f"p-value = {p:.4f}", "\n",
-          f"Welch-Satterthwaite Degrees of Freedom = {dof:.4f}")
-
-    
-def display_side_by_side(*args):
-    html_str=''
-    for df in args:
-        html_str+=df.to_html()
-    display_html(html_str.replace('table','table style="display:inline"'),raw=True)    
+          f"Welch-Satterthwaite Degrees of Freedom = {dof:.4f}")    
     
 
-def hyp2_plot(df):
+def hyp2_plot(df, file_name):
+    '''Display joinplot and saves image to file.'''
     g = sns.jointplot(x="points", y="price", data=df, kind="kde", color="m")
     g.plot_joint(plt.scatter, c="w", s=30, linewidth=1, marker="+")
     g.ax_joint.collections[0].set_alpha(0)
     g.set_axis_labels("$Points$", "$Price$")
+    plt.savefig(file_name, transparent=True, dpi=150, bbox_inches='tight')
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+#   def display_side_by_side(*args):
+#     html_str=''
+#     for df in args:
+#         html_str+=df.to_html()
+#     display_html(html_str.replace('table','table style="display:inline"'),raw=True)
