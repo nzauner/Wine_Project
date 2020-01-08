@@ -3,7 +3,7 @@
 By Stuart Murphy and Nick Zauner
 ***
 
-![Drink_Bubbly](https://bestanimations.com/Food/Beverages/Alcohol/drink-champagne-animated-gif.gif)
+![This is a white wine](https://68.media.tumblr.com/12c4ce1e745b1d4f99b62a86bddaf596/tumblr_om2vts2mgV1uw7ihbo3_500.gif)
 
 - API's collected from:
     - [Snooth](http://www.snooth.com/)
