@@ -10,6 +10,11 @@ Created on Tue Jan  7 20:13:52 2020
 import pandas as pd
 import numpy as np
 import missingno
+import matplotlib.pyplot as plt
+import seaborn as sns
+from scipy import stats
+from IPython.display import display_html
+
 
 def clean_df(raw_df):
     '''Function that removes duplicate wines, unwanted columns, naans, and wines above $100'''
@@ -21,72 +26,27 @@ def clean_df(raw_df):
     return nodup_df
 
 
-def country_df(country):
-    country = wine_df.loc[wine_df['country'] == country]
-    country = us_wine.points.mean()
-     = us_wine.points.std()
-    return 
+def welch_ttest(x, y): 
+    '''dof returns Degrees of Freedom, t, p return Welchs t-test and p-value respectivly'''
+    dof = (x.var()/x.size + y.var()/y.size)**2 / ((x.var()/x.size)**2 / (x.size-1) + (y.var()/y.size)**2 / (y.size-1))
+   
+    t, p = stats.ttest_ind(x, y, equal_var = False)
+    
+    print("\n",
+          f"Welch's t-test= {t:.4f}", "\n",
+          f"p-value = {p:.4f}", "\n",
+          f"Welch-Satterthwaite Degrees of Freedom = {dof:.4f}")
 
+    
+def display_side_by_side(*args):
+    html_str=''
+    for df in args:
+        html_str+=df.to_html()
+    display_html(html_str.replace('table','table style="display:inline"'),raw=True)    
+    
 
-
-class Country:
-  def __init__(country):
-    self.name = name
-
-  def country_stats(self):
-    print("The standard deviation of {country} is " + self.name)
-
-c1 = Country("US")
-c1.myfunc() 
-
-
-
-
-
-
-
-
-#
-#def open_csv(file):
-#    '''This is to import .csv data into a DataFrame'''
-#    df = pd.read_csv(file)
-#    print(type(df))
-#    return df
-#
-#def remove_duplicates(df, col):
-#    '''Remove the duplicate wine entries'''
-#    nodup = df.duplicated(subset=col, keep='first')
-#    return nodup
-#
-#def find_missing(df, nodup):
-#    '''Uses missingno to visualize the missing value in DataFrame'''
-#    return missingno.matrix(df[nodup])
-#
-#def drop_col(df, nodup, w, x, y, z):
-#    '''Remove columns with missing data'''
-#    nodup = df[nodup].drop([w, x, y, z], axis=1)
-#    nodup = nodup.dropna()
-#    return nodup
-#
-#def clean_df(nodup):
-#    '''Remove wine with pricing over $100 per bottle'''
-#    clean_wine_df = nodup[nodup['price'] >= 100 ].index
-#    nodup.drop(clean_wine_df, inplace=True)
-#    return clean_wine_df
-
-# def open_cleaned_csv():
-#     '''This function opens the csv and cleans the data'''
-#     df = pd.read_csv('Data/winemag-data-130k-v2.csv')
-#     nodup = df.duplicated(subset='title', keep='first')
-#     nodup = df[nodup].drop(['Unnamed: 0', 'designation', 'region_1', 'region_2'], axis=1)
-#     clean_wine_df = nodup[nodup['price'] >= 100 ].index
-#     nodup.drop(clean_wine_df, inplace=True)
-#     return clean_wine_df
-
-
-# def clean_df(raw_df):
-#     nodup = raw_df.duplicated(subset='title', keep='first')
-#     nodup = raw_df[nodup].drop(['Unnamed: 0', 'designation', 'region_1', 'region_2'], axis=1)
-#     df = nodup
-#     return df
-
+def hyp2_plot(df):
+    g = sns.jointplot(x="points", y="price", data=df, kind="kde", color="m")
+    g.plot_joint(plt.scatter, c="w", s=30, linewidth=1, marker="+")
+    g.ax_joint.collections[0].set_alpha(0)
+    g.set_axis_labels("$Points$", "$Price$")
